@@ -1,0 +1,23 @@
+@model Category
+
+
+
+
+
+<h1>Delete</h1>
+
+<form method="post">
+    <div class="row">
+        <div asp-validation-summary="All"></div>
+        <div class="col">
+            <input asp-for="Name" type="text" class="form-control" disabled placeholder="Category name">
+
+        </div>
+        <div class="col">
+            <input asp-for="DisplayOrder" type="text" class="form-control" disabled placeholder="Display order">
+
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary pt-10">Delete</button>
+    <a asp-controller="Category" asp-action="Index">Back to List</a>
+</form>
