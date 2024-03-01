@@ -48,7 +48,7 @@ namespace MVC.Controllers
         {
 
             // List<Category> categories = _db.Categories.ToList();
-            List<Category> categories = _categoryRepository.GetALL().ToList();
+            List<Category> categories = _categoryRepository.GetALL("").ToList();
 
 
             return View(categories);
@@ -95,7 +95,7 @@ namespace MVC.Controllers
         public ActionResult DeleteConfirm(int itemid)
         {
             // Category category = _db.Categories.FirstOrDefault(c => c.ID == itemid);
-            Category category = _categoryRepository.Get(c => c.ID == itemid);
+            Category category = _categoryRepository.Get(c => c.ID == itemid, "");
 
             if (category == null)
             {
@@ -112,7 +112,7 @@ namespace MVC.Controllers
         public ActionResult Delete(int itemid)
         {
             // Category category = _db.Categories.FirstOrDefault(c => c.ID == itemid);
-            Category category = _categoryRepository.Get(c => c.ID == itemid);
+            Category category = _categoryRepository.Get(c => c.ID == itemid, "");
 
             if (category == null)
             {
@@ -134,7 +134,7 @@ namespace MVC.Controllers
         public ActionResult Edit(int itemid, Category objupdated)
         {
             // Category category = _db.Categories.FirstOrDefault(c => c.ID == itemid);
-            Category category = _categoryRepository.Get(c => c.ID == itemid);
+            Category category = _categoryRepository.Get(c => c.ID == itemid, "");
             if (category == null)
             {
                 return NotFound();

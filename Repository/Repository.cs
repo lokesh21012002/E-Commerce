@@ -25,6 +25,8 @@ namespace MVC.Repository
         {
             _db = db;
             this._dbSet = _db.Set<T>();
+            _db.Products.Include(u => u.Category);
+
 
 
 
@@ -42,11 +44,21 @@ namespace MVC.Repository
             // throw new NotImplementedException();
         }
 
-        public T Get(System.Linq.Expressions.Expression<Func<T, bool>> filter)
+        public T Get(System.Linq.Expressions.Expression<Func<T, bool>> filter, string? inlcudeProperties = null)
         {
             // _dbSet.
             IQueryable<T> query = _dbSet;
             query.Where(filter);
+            if (!string.IsNullOrEmpty(inlcudeProperties))
+            {
+                foreach (var includeprop in inlcudeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query.Include(includeprop);
+
+
+
+                }
+            }
             return query.FirstOrDefault();
 
 
@@ -54,9 +66,20 @@ namespace MVC.Repository
             // throw new NotImplementedException();
         }
 
-        public IEnumerable<T> GetALL()
+        public IEnumerable<T> GetALL(string? inlcudeProperties = null)
         {
             IQueryable<T> query = _dbSet;
+
+            if (!string.IsNullOrEmpty(inlcudeProperties))
+            {
+                foreach (var includeprop in inlcudeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query.Include(includeprop);
+
+
+
+                }
+            }
 
             return query.ToList();
 

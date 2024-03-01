@@ -8,8 +8,8 @@ namespace MVC.Repository
 {
     public interface IRepository<T> where T : class
     {
-        IEnumerable<T> GetALL();
-        T Get(Expression<Func<T, bool>> filter);
+        IEnumerable<T> GetALL(string? inlcudeProperties);
+        T Get(Expression<Func<T, bool>> filter, string? inlcudeProperties);
 
 
         void Add(T item);

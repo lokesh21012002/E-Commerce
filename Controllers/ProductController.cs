@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.Extensions.Logging;
 using MVC.Data;
 using MVC.Models;
@@ -42,8 +43,8 @@ namespace MVC.Controllers
         {
 
             // List<Category> categories = _db.Categories.ToList();
-            List<Product> products = _productRepository.GetALL().ToList();
-            IEnumerable<SelectListItem> categoryList = _categoryRepository.GetALL().Select(u => new SelectListItem
+            List<Product> products = _productRepository.GetALL(inlcudeProperties: "Category").ToList();
+            IEnumerable<SelectListItem> categoryList = _categoryRepository.GetALL("").Select(u => new SelectListItem
             {
                 Text = u.Name,
                 Value = u.ID.ToString(),
@@ -61,7 +62,7 @@ namespace MVC.Controllers
 
         public IActionResult Add()
         {
-            IEnumerable<SelectListItem> categoryList = _categoryRepository.GetALL().Select(u => new SelectListItem
+            IEnumerable<SelectListItem> categoryList = _categoryRepository.GetALL("").Select(u => new SelectListItem
             {
                 Text = u.Name,
                 Value = u.ID.ToString(),
@@ -135,7 +136,7 @@ namespace MVC.Controllers
             }
             else
             {
-                IEnumerable<SelectListItem> categoryList = _categoryRepository.GetALL().Select(u => new SelectListItem
+                IEnumerable<SelectListItem> categoryList = _categoryRepository.GetALL("").Select(u => new SelectListItem
                 {
                     Text = u.Name,
                     Value = u.ID.ToString(),
@@ -161,7 +162,7 @@ namespace MVC.Controllers
         public ActionResult DeleteConfirm(int itemid)
         {
             // Category category = _db.Categories.FirstOrDefault(c => c.ID == itemid);
-            Product product = _productRepository.Get(c => c.Id == itemid);
+            Product product = _productRepository.Get(c => c.Id == itemid, "");
 
             if (product == null)
             {
@@ -178,7 +179,7 @@ namespace MVC.Controllers
         public ActionResult Delete(int itemid)
         {
             // Category category = _db.Categories.FirstOrDefault(c => c.ID == itemid);
-            Product product = _productRepository.Get(c => c.Id == itemid);
+            Product product = _productRepository.Get(c => c.Id == itemid, "");
 
             if (product == null)
             {
@@ -217,7 +218,7 @@ namespace MVC.Controllers
                 return NotFound();
 
             }
-            IEnumerable<SelectListItem> categoryList = _categoryRepository.GetALL().Select(u => new SelectListItem
+            IEnumerable<SelectListItem> categoryList = _categoryRepository.GetALL("").Select(u => new SelectListItem
             {
                 Text = u.Name,
                 Value = u.ID.ToString(),
