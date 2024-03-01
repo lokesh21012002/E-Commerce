@@ -6,7 +6,7 @@
 
 <h1>Add</h1>
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div class="row">
         <div asp-validation-summary="All"></div>
         <div class="col">
@@ -38,7 +38,8 @@
             <span asp-validation-for="Product.Price100" class="text-danger"></span>
         </div>
         <div class="col">
-            <input type="file" asp-for="Product.ImageUrl" class="form-control" placeholder="Upload Image">
+            <input type="file" name="formFile" asp-for="Product.ImageUrl" class="form-control"
+                placeholder="Upload Image">
 
         </div>
         <div class="col">
@@ -50,8 +51,8 @@
             <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary pt-10">Add</button>
-    <a asp-controller="Product" asp-action="Index">Back to List</a>
+    <button type="submit" class="btn btn-primary pt-10 mt-4">Add</button>
+    <a asp-controller="Product" asp-action="Index" class="mt-5 mx-5">Back to List</a>
 </form>
 
 @section Scripts {

@@ -132,3 +132,4 @@
 /Users/lokesh/MVC/obj/Debug/net8.0/MVC.csproj.AssemblyReference.cache
 /Users/lokesh/MVC/obj/Debug/net8.0/MVC.MvcApplicationPartsAssemblyInfo.cs
 /Users/lokesh/MVC/obj/Debug/net8.0/MVC.csproj.Up2Date
+/Users/lokesh/MVC/obj/Debug/net8.0/MVC.sourcelink.json

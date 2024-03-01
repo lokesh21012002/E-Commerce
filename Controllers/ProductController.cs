@@ -18,9 +18,15 @@ namespace MVC.Controllers
         private readonly ILogger<ProductController> _logger;
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IWebHostEnvironment _iwebHost;
 
-        public ProductController(ILogger<ProductController> logger, IProductRepository db, ICategoryRepository db2)
+
+        public ProductController(ILogger<ProductController> logger, IProductRepository db, ICategoryRepository db2, IWebHostEnvironment iwebHost)
+
+
         {
+            _iwebHost = iwebHost;
+
             _logger = logger;
             _productRepository = db;
             _categoryRepository = db2;
@@ -73,10 +79,12 @@ namespace MVC.Controllers
         }
 
         [HttpPost("/Product/Add")]
-        public IActionResult Add(ProductView obj)
+        public IActionResult Add(ProductView obj, IFormFile? formFile)
         {
-            obj.Product.ImageUrl = "";
+            // obj.Product.ImageUrl = "";
             Console.WriteLine(obj.Product.CategoryId);
+
+
 
 
 
@@ -91,6 +99,27 @@ namespace MVC.Controllers
             // }
             if (ModelState.IsValid)
             {
+                string wwpath = _iwebHost.WebRootPath;
+
+                if (formFile != null)
+                {
+                    string filename = Guid.NewGuid().ToString() + Path.GetExtension(formFile.FileName);
+                    Console.WriteLine(filename);
+                    string productPath = Path.Combine(wwpath, @"images/product");
+                    Console.WriteLine(productPath);
+
+                    using (var fileStream = new FileStream(Path.Combine(productPath, filename), FileMode.Create))
+                    {
+                        formFile.CopyTo(fileStream);
+
+
+
+                    }
+                    obj.Product.ImageUrl = @"/images/product/" + filename;
+                    Console.WriteLine(obj.Product.ImageUrl);
+
+
+                }
                 // _db.Categories.Add(obj);
                 _productRepository.Add(obj.Product);
                 // _db.SaveChanges();
