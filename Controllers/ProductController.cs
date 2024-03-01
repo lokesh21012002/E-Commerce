@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using Google.Protobuf.WellKnownTypes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using MVC.Data;
 using MVC.Models;
 using MVC.Repository;
 
@@ -16,15 +18,17 @@ namespace MVC.Controllers
     public class ProductController : Controller
     {
         private readonly ILogger<ProductController> _logger;
+        private readonly ApplicationDbContext _db;
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IWebHostEnvironment _iwebHost;
 
 
-        public ProductController(ILogger<ProductController> logger, IProductRepository db, ICategoryRepository db2, IWebHostEnvironment iwebHost)
+        public ProductController(ILogger<ProductController> logger, IProductRepository db, ICategoryRepository db2, IWebHostEnvironment iwebHost, ApplicationDbContext db3)
 
 
         {
+            _db = db3;
             _iwebHost = iwebHost;
 
             _logger = logger;
@@ -189,22 +193,51 @@ namespace MVC.Controllers
 
             TempData["msg"] = "Category Deleted successfully";
 
-            return RedirectToAction("Index", "Category");
+            return RedirectToAction("Index", "Product");
 
         }
         [HttpGet("/Product/Edit/{itemid}")]
-        public ActionResult Edit(int itemid, Category objupdated)
+        public ActionResult Edit(int itemid, Product objupdated)
         {
+            Console.WriteLine(itemid);
+
             // Category category = _db.Categories.FirstOrDefault(c => c.ID == itemid);
-            Product product = _productRepository.Get(c => c.Id == itemid);
+            // Product product = _productRepository.Get(c => c.Id == itemid);
+            Product product = _db.Products.FirstOrDefault(u => u.Id == itemid);
+
+            // Console.WriteLine(product.Id.ToString());
+            foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(product))
+            {
+                string name = descriptor.Name;
+                object value = descriptor.GetValue(product);
+                Console.WriteLine("{0}={1}", name, value);
+            }
             if (product == null)
             {
                 return NotFound();
 
             }
+            IEnumerable<SelectListItem> categoryList = _categoryRepository.GetALL().Select(u => new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.ID.ToString(),
 
 
-            return View(product);
+
+            });
+
+
+            ProductView model = new ProductView()
+            {
+                Product = product,
+                CategoryList = categoryList
+            };
+
+            Console.WriteLine(model.Product.ImageUrl);
+
+
+
+            return View(model);
 
 
             // category.DisplayOrder = objupdated.DisplayOrder;

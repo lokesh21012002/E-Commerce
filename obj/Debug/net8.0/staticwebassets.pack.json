@@ -13,6 +13,22 @@
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
+      "Id": "/Users/lokesh/MVC/wwwroot/images/product/5a2f0ce6-b9b8-4520-b662-611628ba5e4c.jpg",
+      "PackagePath": "staticwebassets/images/product/5a2f0ce6-b9b8-4520-b662-611628ba5e4c.jpg"
+    },
+    {
+      "Id": "/Users/lokesh/MVC/wwwroot/images/product/ebeb5072-3c15-4469-85ad-f7e6d76f058c.jpg",
+      "PackagePath": "staticwebassets/images/product/ebeb5072-3c15-4469-85ad-f7e6d76f058c.jpg"
+    },
+    {
+      "Id": "/Users/lokesh/MVC/wwwroot/images/product/f14fe67b-dd89-40e8-9eeb-976bf8c2fd01.jpg",
+      "PackagePath": "staticwebassets/images/product/f14fe67b-dd89-40e8-9eeb-976bf8c2fd01.jpg"
+    },
+    {
+      "Id": "/Users/lokesh/MVC/wwwroot/images/product/fdc86e5d-5769-4e06-864c-791db2b5512c.jpg",
+      "PackagePath": "staticwebassets/images/product/fdc86e5d-5769-4e06-864c-791db2b5512c.jpg"
+    },
+    {
       "Id": "/Users/lokesh/MVC/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },

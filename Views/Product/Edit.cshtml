@@ -1,4 +1,4 @@
-@model Product
+@model ProductView
 
 
 
@@ -10,34 +10,36 @@
     <div class="row">
         <div asp-validation-summary="All"></div>
         <div class="col">
-            <input asp-for="Title" type="text" class="form-control" placeholder="Category name">
-            <span asp-validation-for="Title" class="text-danger"></span>
+            <input asp-for="Product.Title" type="text" class="form-control" placeholder="Category name">
+            <span asp-validation-for="Product.Title" class="text-danger"></span>
         </div>
         <div class="col">
-            <input asp-for="Description" type="text" class="form-control" placeholder="Display order">
-            <span asp-validation-for="Description" class="text-danger"></span>
+            <input asp-for="Product.Description" type="text" class="form-control" placeholder="Display order">
+            <span asp-validation-for="Product.Description" class="text-danger"></span>
         </div>
         <div class="col">
-            <input asp-for="Author" type="text" class="form-control" placeholder="Display order">
-            <span asp-validation-for="Author" class="text-danger"></span>
+            <input asp-for="Product.Author" type="text" class="form-control" placeholder="Display order">
+            <span asp-validation-for="Product.Author" class="text-danger"></span>
         </div>
         <div class="col">
-            <input asp-for="ISBN" type="text" class="form-control" placeholder="Display order">
-            <span asp-validation-for="ISBN" class="text-danger"></span>
+            <input asp-for="Product.ISBN" type="text" class="form-control" placeholder="Display order">
+            <span asp-validation-for="Product.ISBN" class="text-danger"></span>
         </div>
         <div class="col">
-            <input asp-for="Price" type="text" class="form-control" placeholder="Display order">
-            <span asp-validation-for="Price" class="text-danger"></span>
+            <input asp-for="Product.Price" type="text" class="form-control" placeholder="Display order">
+            <span asp-validation-for="Product.Price" class="text-danger"></span>
         </div>
         <div class="col">
-            <input asp-for="Price50" type="text" class="form-control" placeholder="Display order">
-            <span asp-validation-for="Price50" class="text-danger"></span>
+            <input asp-for="Product.Price50" type="text" class="form-control" placeholder="Display order">
+            <span asp-validation-for="Product.Price50" class="text-danger"></span>
         </div>
         <div class="col">
-            <input asp-for="Price100" type="text" class="form-control" placeholder="Display order">
-            <span asp-validation-for="Price100" class="text-danger"></span>
+            <input asp-for="Product.Price100" type="text" class="form-control" placeholder="Display order">
+            <span asp-validation-for="Product.Price100" class="text-danger"></span>
         </div>
     </div>
+    @* <h1>@Model.Product.ImageUrl</h1> *@
+    <img src="@Model.Product.ImageUrl" height="50px" width="50px" />
     <button type="submit" class="btn btn-primary pt-10">Edit</button>
     <a asp-controller="Product" asp-action="Index">Back to List</a>
 </form>
