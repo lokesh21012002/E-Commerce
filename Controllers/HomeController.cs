@@ -1,21 +1,28 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using MVC.Models;
+using MVC.Repository;
 
 namespace MVC.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly IProductRepository _productRepository;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(IProductRepository productRepository)
     {
-        _logger = logger;
+
+        _productRepository = productRepository;
+
     }
 
     public IActionResult Index()
     {
-        return View();
+
+        IEnumerable<Product> products = _productRepository.GetALL(inlcudeProperties: "Category");
+
+        return View(products);
     }
 
     public IActionResult Privacy()
