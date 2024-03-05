@@ -11,11 +11,23 @@
                             <img src="@product.ImageUrl" class="card-image-top rounded"></img>
                             <div class="card-body pb-0">
                                 <div class="pl-1">
+                                    <p class="class-title h5 text-dark opacity-75 text-uppercase text-center">@product.Title
+                                    </p>
+                                    <p class="card-title text-warning text-center">@product.Author</p>
 
                                 </div>
+                                <p class="text-dark opacity-75 text-center">As low as
+                                    <span>@product.Price100.ToString("c")</span>
+                                </p>
 
 
                             </div>
+                        </div>
+                        <a asp-action="Detail" asp-route-id="@product.Id"
+                            class="btn btn-primary bg-gradient border-0 form-control">Details</a>
+
+                        <div>
+
                         </div>
                     </div>
                 </div>

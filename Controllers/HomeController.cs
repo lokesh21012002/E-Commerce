@@ -24,6 +24,14 @@ public class HomeController : Controller
 
         return View(products);
     }
+    public IActionResult Detail(int id)
+    {
+
+        Product product = _productRepository.Get(u => u.Id == id, inlcudeProperties: "Category");
+
+
+        return View(product);
+    }
 
     public IActionResult Privacy()
     {
