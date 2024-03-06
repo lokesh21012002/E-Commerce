@@ -38,15 +38,15 @@ namespace MVC.Controllers
         {
 
             // List<Category> categories = _db.Categories.ToList();
-            List<Company> Companys = _companyRepository.GetALL(inlcudeProperties: "Category").ToList();
-            IEnumerable<SelectListItem> categoryList = _categoryRepository.GetALL("").Select(u => new SelectListItem
-            {
-                Text = u.Name,
-                Value = u.ID.ToString(),
+            List<Company> Companys = _companyRepository.GetALL("").ToList();
+            // IEnumerable<SelectListItem> categoryList = _categoryRepository.GetALL("").Select(u => new SelectListItem
+            // {
+            //     Text = u.Name,
+            //     Value = u.ID.ToString(),
 
 
 
-            });
+            // });
 
 
 
@@ -57,29 +57,29 @@ namespace MVC.Controllers
 
         public IActionResult Add()
         {
-            IEnumerable<SelectListItem> categoryList = _categoryRepository.GetALL("").Select(u => new SelectListItem
-            {
-                Text = u.Name,
-                Value = u.ID.ToString(),
+            // IEnumerable<SelectListItem> categoryList = _categoryRepository.GetALL("").Select(u => new SelectListItem
+            // {
+            //     Text = u.Name,
+            //     Value = u.ID.ToString(),
 
 
 
-            });
-            ProductView ProductView = new()
-            {
-                CategoryList = categoryList,
-                Product = new Product()
+            // });
+            // ProductView ProductView = new()
+            // {
+            //     CategoryList = categoryList,
+            //     Product = new Product()
 
 
-            };
+            // };
 
-            ViewBag.CategoryList = categoryList;
-            return View(ProductView);
+            // ViewBag.CategoryList = categoryList;
+            return View(new Company());
 
         }
 
         [HttpPost("/Company/Add")]
-        public IActionResult Add(ProductView obj, IFormFile? formFile)
+        public IActionResult Add(Company obj)
         {
             // obj.Company.ImageUrl = "";
             // Console.WriteLine(obj.Company.CategoryId);
@@ -98,30 +98,8 @@ namespace MVC.Controllers
 
             // }
             if (ModelState.IsValid)
-            {
-                string wwpath = _iwebHost.WebRootPath;
-
-                if (formFile != null)
-                {
-                    string filename = Guid.NewGuid().ToString() + Path.GetExtension(formFile.FileName);
-                    Console.WriteLine(filename);
-                    string CompanyPath = Path.Combine(wwpath, @"images/Company");
-                    Console.WriteLine(CompanyPath);
-
-                    using (var fileStream = new FileStream(Path.Combine(CompanyPath, filename), FileMode.Create))
-                    {
-                        formFile.CopyTo(fileStream);
-
-
-
-                    }
-                    obj.Company.ImageUrl = @"/images/Company/" + filename;
-                    Console.WriteLine(obj.Company.ImageUrl);
-
-
-                }
-                // _db.Categories.Add(obj);
-                _companyRepository.Add(obj.Company);
+            {                // _db.Categories.Add(obj);
+                _companyRepository.Add(obj);
                 // _db.SaveChanges();
                 _companyRepository.Save();
 
@@ -131,17 +109,17 @@ namespace MVC.Controllers
             }
             else
             {
-                IEnumerable<SelectListItem> categoryList = _categoryRepository.GetALL("").Select(u => new SelectListItem
-                {
-                    Text = u.Name,
-                    Value = u.ID.ToString(),
+                // IEnumerable<SelectListItem> categoryList = _categoryRepository.GetALL("").Select(u => new SelectListItem
+                // {
+                //     Text = u.Name,
+                //     Value = u.ID.ToString(),
 
 
 
-                });
+                // });
 
 
-                obj.CategoryList = categoryList;
+                // obj.CategoryList = categoryList;
 
                 return View(obj);
 
@@ -199,41 +177,41 @@ namespace MVC.Controllers
 
             // Category category = _db.Categories.FirstOrDefault(c => c.ID == itemid);
             // Company Company = _companyRepository.Get(c => c.Id == itemid);
-            Company Company = _db.Companies.FirstOrDefault(u => u.Id == itemid);
+            Company company = _db.Companies.FirstOrDefault(u => u.Id == itemid);
 
             // Console.WriteLine(Company.Id.ToString());
-            foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(Company))
-            {
-                string name = descriptor.Name;
-                object value = descriptor.GetValue(Company);
-                Console.WriteLine("{0}={1}", name, value);
-            }
-            if (Company == null)
+            // foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(Company))
+            // {
+            //     string name = descriptor.Name;
+            //     object value = descriptor.GetValue(Company);
+            //     Console.WriteLine("{0}={1}", name, value);
+            // }
+            if (company == null)
             {
                 return NotFound();
 
             }
-            IEnumerable<SelectListItem> categoryList = _categoryRepository.GetALL("").Select(u => new SelectListItem
-            {
-                Text = u.Name,
-                Value = u.ID.ToString(),
+            // IEnumerable<SelectListItem> categoryList = _categoryRepository.GetALL("").Select(u => new SelectListItem
+            // {
+            //     Text = u.Name,
+            //     Value = u.ID.ToString(),
 
 
 
-            });
+            // });
 
 
-            CompanyView model = new CompanyView()
-            {
-                Company = Company,
-                CategoryList = categoryList
-            };
+            // CompanyView model = new CompanyView()
+            // {
+            //     Company = Company,
+            //     CategoryList = categoryList
+            // };
 
-            Console.WriteLine(model.Company.ImageUrl);
+            // Console.WriteLine(model.Company.ImageUrl);
 
 
 
-            return View(model);
+            return View(company);
 
 
             // category.DisplayOrder = objupdated.DisplayOrder;
