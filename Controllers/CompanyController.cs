@@ -240,6 +240,22 @@ namespace MVC.Controllers
 
 
         }
+        [HttpGet]
+
+        public IActionResult GetAll()
+        {
+
+            List<Company> companies = _companyRepository.GetALL("").ToList();
+            return Json(new { data = companies });
+
+
+
+
+
+
+        }
+
+
 
 
 

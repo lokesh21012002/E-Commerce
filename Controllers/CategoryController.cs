@@ -173,6 +173,20 @@ namespace MVC.Controllers
         }
 
 
+        [HttpGet]
+
+        public IActionResult GetAll()
+        {
+
+            List<Company> companies =
+
+
+
+
+
+        }
+
+
 
 
 
