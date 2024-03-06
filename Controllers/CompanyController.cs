@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using MVC.Data;
 using MVC.Models;
 using MVC.Repository;
 
@@ -16,11 +17,16 @@ namespace MVC.Controllers
     {
         private readonly ILogger<Company> _logger;
         private readonly ICompanyRepository _companyRepository;
+        private readonly IWebHostEnvironment _iwebHost;
 
         private readonly ICategoryRepository _categoryRepository;
+        private readonly ApplicationDbContext _db;
 
-        public CompanyController(ILogger<Company> logger, ICompanyRepository companyRepository, ICategoryRepository categoryRepository)
+        public CompanyController(ILogger<Company> logger, ICompanyRepository companyRepository, ICategoryRepository categoryRepository, IWebHostEnvironment iwebHost, ApplicationDbContext db)
         {
+            _iwebHost = iwebHost;
+            _db = db;
+
             _logger = logger;
             _companyRepository = companyRepository;
             _categoryRepository = categoryRepository;
@@ -193,7 +199,7 @@ namespace MVC.Controllers
 
             // Category category = _db.Categories.FirstOrDefault(c => c.ID == itemid);
             // Company Company = _companyRepository.Get(c => c.Id == itemid);
-            Company Company = _db.Companys.FirstOrDefault(u => u.Id == itemid);
+            Company Company = _db.Companies.FirstOrDefault(u => u.Id == itemid);
 
             // Console.WriteLine(Company.Id.ToString());
             foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(Company))
