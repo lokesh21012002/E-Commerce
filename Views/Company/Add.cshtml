@@ -1,11 +1,64 @@
-@page
-@model MVC.Views.Company.Add
-@{
-    ViewData["Title"] = "Add";
+@model MVC.Models.Company
+
+
+
+
+
+<h1>Add</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div asp-validation-summary="All"></div>
+        <div class="col">
+            <input asp-for="Name" type="text" class="form-control" placeholder="Title">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <input asp-for="State" type="text" class="form-control" placeholder="Description">
+            <span asp-validation-for="State" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <input asp-for="City" type="text" class="form-control" placeholder="Author">
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <input asp-for="PostalCode" type="text" class="form-control" placeholder="ISBN">
+            <span asp-validation-for="PostalCode" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <input asp-for="PhoneNumber" type="text" class="form-control" placeholder="Price">
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <input asp-for="StreetAdrress" type="text" class="form-control" placeholder="Price50">
+            <span asp-validation-for="StreetAdrress" class="text-danger"></span>
+        </div>
+        @* <div class="col">
+        <input asp-for="Product.Price100" type="text" class="form-control" placeholder="Price100">
+        <span asp-validation-for="Product.Price100" class="text-danger"></span>
+        </div>
+        <div class="col">
+        <input type="file" name="formFile" asp-for="Product.ImageUrl" class="form-control"
+        placeholder="Upload Image">
+
+        </div>
+        <div class="col">
+        <select class="form-select" asp-for="Product.CategoryId" asp-items="@Model.CategoryList">
+        <option disabled selected>--Select Category--</option>
+
+        </select>
+
+        <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+        </div> *@
+    </div>
+    <button type="submit" class="btn btn-primary pt-10 mt-4">Add</button>
+    <a asp-controller="Company" asp-action="Index" class="mt-5 mx-5">Back to List</a>
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial"></partial>
+
+
+    }
 }
-
-<h1>@ViewData["Title"]</h1>
-
-<div>
-    
-</div>

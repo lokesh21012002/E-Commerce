@@ -173,18 +173,18 @@ namespace MVC.Controllers
         }
 
 
-        [HttpGet]
+        // [HttpGet]
 
-        public IActionResult GetAll()
-        {
+        // public IActionResult GetAll()
+        // {
 
-            List<Company> companies =
-
-
+        //     List<Company> companies =_c
 
 
 
-        }
+
+
+        // }
 
 
 

@@ -1,3 +1,5 @@
+@model List<Company>
+
 <partial name="_Partial" />
 
 <div class="container">
@@ -27,23 +29,23 @@
         <thead>
             <tr>
                 <th>
-                    Title
+                    Name
 
 
                 </th>
                 <th>
-                    ISBN
+                    StreetAdrress
                 </th>
                 <th>
-                    Price
+                    City
 
 
                 </th>
                 <th>
-                    Author
+                    State
                 </th>
                 <th>
-                    Category
+                    PostalAddress
 
                 </th>
 
@@ -58,16 +60,17 @@
             @foreach (var obj in Model)
             {
                 <tr>
-                    <td>@obj.Title</td>
-                    <td>@obj.ISBN</td>
-                    <td>@obj.Price</td>
-                    <td>@obj.Author</td>
-                    <td>@obj.Category.Name</td>
+                    <td>@obj.Name</td>
+                    <td>@obj.StreetAdrress</td>
+                    <td>@obj.City</td>
+                    <td>@obj.State</td>
+                    <td>@obj.PostalCode</td>
+
                     <td>
                         <div class="w-75 btn-group" role="group">
-                            <a asp-controller="Product" asp-action="Edit" asp-route-itemid="@obj.Id"
+                            <a asp-controller="Company" asp-action="Edit" asp-route-itemid="@obj.Id"
                                 class="btn btn-primary mx-2">Edit</a>
-                            <a asp-controller="Product" asp-action="Delete" asp-route-itemid="@obj.Id"
+                            <a asp-controller="Company" asp-action="Delete" asp-route-itemid="@obj.Id"
                                 class="btn btn-danger mx-2" onClick="delete">Delete</a>
 
                         </div>
