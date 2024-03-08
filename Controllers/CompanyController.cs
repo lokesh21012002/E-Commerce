@@ -255,6 +255,39 @@ namespace MVC.Controllers
 
         }
 
+        public IActionResult Get(int id)
+        {
+            Company company = _companyRepository.Get(u => u.Id == id, inlcudeProperties: "");
+            if (company == null)
+            {
+
+                return NotFound();
+            }
+
+
+            return Json(new { status = 200, data = company });
+
+        }
+        public IActionResult DeleteCompany(int id)
+        {
+            Company company = _companyRepository.Get(u => u.Id == id, inlcudeProperties: "");
+            if (company == null)
+            {
+
+                return NotFound();
+            }
+
+            _companyRepository.Remove(company);
+            _categoryRepository.Save();
+
+
+
+
+
+            return Json(new { status = 200, data = company });
+
+        }
+
 
 
 
