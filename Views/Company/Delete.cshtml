@@ -1,0 +1,67 @@
+@model Company
+
+
+
+
+
+<h1>Delete</h1>
+
+<form method="post">
+    <div class="row">
+        <div asp-validation-summary="All"></div>
+        <div class="col">
+            <input asp-for="Name" type="text" class="form-control" disabled placeholder="Category name">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <input asp-for="State" type="text" class="form-control" disabled placeholder="Display order">
+            <span asp-validation-for="State" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <input asp-for="PostalCode" type="text" class="form-control" disabled placeholder="Display order">
+            <span asp-validation-for="PostalCode" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <input asp-for="PhoneNumber" type="text" class="form-control" disabled placeholder="Display order">
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <input asp-for="City" type="text" class="form-control" disabled placeholder="Display order">
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <input asp-for="StreetAdrress" type="text" class="form-control" disabled placeholder="Display order">
+            <span asp-validation-for="StreetAdrress" class="text-danger"></span>
+        </div>
+
+    </div>
+    <button type="submit" class="btn btn-primary pt-10">Delete</button>
+    <a asp-controller="Company" asp-action="Index">Back to List</a>
+</form>
+
+
+<script type="text/javascript">
+
+    function delete (){
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+            }
+        });
+    }
+
+
+
+</script>
