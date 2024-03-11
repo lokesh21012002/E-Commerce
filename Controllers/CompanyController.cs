@@ -274,7 +274,8 @@ namespace MVC.Controllers
             if (company == null)
             {
 
-                return NotFound();
+                // return NotFound();
+                return Json(new { status = 404, msg = "Not found" });
             }
 
             _companyRepository.Remove(company);

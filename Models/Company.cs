@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Org.BouncyCastle.Bcpg.OpenPgp;
 
 namespace MVC.Models
@@ -21,6 +23,20 @@ namespace MVC.Models
         public string? PostalCode { get; set; }
 
         public string? PhoneNumber { get; set; }
+
+
+        public int CompanyId { get; set; }
+
+        [ForeignKey("CompanyId")]
+        [ValidateNever]
+
+        public Company company { get; set; }
+
+
+
+
+
+
 
 
 
