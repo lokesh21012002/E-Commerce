@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "XpUToP8725X6a7kytnu1JtWigPXME5NrkqXw8TLMhiCQYgVuCOX4PELDkWgXaBv1FcN8Zw5atgvzsnWteIHZtg==",
+  "dgSpecHash": "NqUmTjm9GF36fkmiyav9jZXTFk+WrRb0sU6mmgSoCFApIY8R4MIlKgJ2PFm6W58Wb6WmeQVOr6/+O5+Gxk+1ag==",
   "success": true,
   "projectFilePath": "/Users/lokesh/MVC/MVC.csproj",
   "expectedPackageFiles": [
     "/Users/lokesh/.nuget/packages/bouncycastle.cryptography/2.2.1/bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "/Users/lokesh/.nuget/packages/google.protobuf/3.25.1/google.protobuf.3.25.1.nupkg.sha512",
     "/Users/lokesh/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
+    "/Users/lokesh/.nuget/packages/junitxml.testlogger/3.1.12/junitxml.testlogger.3.1.12.nupkg.sha512",
     "/Users/lokesh/.nuget/packages/k4os.compression.lz4/1.3.5/k4os.compression.lz4.1.3.5.nupkg.sha512",
     "/Users/lokesh/.nuget/packages/k4os.compression.lz4.streams/1.3.5/k4os.compression.lz4.streams.1.3.5.nupkg.sha512",
     "/Users/lokesh/.nuget/packages/k4os.hash.xxhash/1.0.8/k4os.hash.xxhash.1.0.8.nupkg.sha512",
@@ -42,6 +43,7 @@
     "/Users/lokesh/.nuget/packages/mysql.entityframeworkcore/8.0.0/mysql.entityframeworkcore.8.0.0.nupkg.sha512",
     "/Users/lokesh/.nuget/packages/mysqlconnector/2.3.5/mysqlconnector.2.3.5.nupkg.sha512",
     "/Users/lokesh/.nuget/packages/mysqlconnector.dependencyinjection/2.3.5/mysqlconnector.dependencyinjection.2.3.5.nupkg.sha512",
+    "/Users/lokesh/.nuget/packages/nunit/4.1.0/nunit.4.1.0.nupkg.sha512",
     "/Users/lokesh/.nuget/packages/pomelo.entityframeworkcore.mysql/8.0.0/pomelo.entityframeworkcore.mysql.8.0.0.nupkg.sha512",
     "/Users/lokesh/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "/Users/lokesh/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
