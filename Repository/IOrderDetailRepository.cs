@@ -6,15 +6,14 @@ using MVC.Models;
 
 namespace MVC.Repository
 {
-    public interface IOrderDetailRepository
+    public interface IOrderDetailRepository : IRepository<OrderDetail>
     {
 
-        public interface IOrderDetailRepository : IRepository<OrderDetail>
-        {
-            void Update(OrderDetail obj);
+
+        void Update(OrderDetail obj);
 
 
-        }
+
 
     }
 }

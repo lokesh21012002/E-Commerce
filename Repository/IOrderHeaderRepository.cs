@@ -7,7 +7,7 @@ using MVC.Models;
 
 namespace MVC.Repository
 {
-    public interface IOrderHeaderRepository : IRepository<OrderDetail>
+    public interface IOrderHeaderRepository : IRepository<OrderHeader>
 
     {
         void Update(OrderHeader obj);
