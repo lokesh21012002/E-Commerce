@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "NqUmTjm9GF36fkmiyav9jZXTFk+WrRb0sU6mmgSoCFApIY8R4MIlKgJ2PFm6W58Wb6WmeQVOr6/+O5+Gxk+1ag==",
+  "dgSpecHash": "K9Ex/t2W5qX62HZACqwMjGahr9cB9cC6pN44LB8S1T+F58rKoIf4IPaD980PfolLM6qeh68iFzeWofZ65uiAkg==",
   "success": true,
   "projectFilePath": "/Users/lokesh/MVC/MVC.csproj",
   "expectedPackageFiles": [
@@ -44,7 +44,9 @@
     "/Users/lokesh/.nuget/packages/mysqlconnector/2.3.5/mysqlconnector.2.3.5.nupkg.sha512",
     "/Users/lokesh/.nuget/packages/mysqlconnector.dependencyinjection/2.3.5/mysqlconnector.dependencyinjection.2.3.5.nupkg.sha512",
     "/Users/lokesh/.nuget/packages/nunit/4.1.0/nunit.4.1.0.nupkg.sha512",
+    "/Users/lokesh/.nuget/packages/pipelines.sockets.unofficial/2.2.8/pipelines.sockets.unofficial.2.2.8.nupkg.sha512",
     "/Users/lokesh/.nuget/packages/pomelo.entityframeworkcore.mysql/8.0.0/pomelo.entityframeworkcore.mysql.8.0.0.nupkg.sha512",
+    "/Users/lokesh/.nuget/packages/stackexchange.redis/2.7.33/stackexchange.redis.2.7.33.nupkg.sha512",
     "/Users/lokesh/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "/Users/lokesh/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "/Users/lokesh/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
