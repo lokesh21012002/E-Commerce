@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Storage;
-using Newtonsoft.Json;
+
+
 using StackExchange.Redis;
 
 
@@ -12,7 +14,7 @@ namespace MVC.Data
     public class CacheService : ICacheService
     {
 
-        private readonly Microsoft.EntityFrameworkCore.Storage.IDatabase _db;
+        private IDatabase _db;
 
 
         public CacheService()
@@ -30,17 +32,33 @@ namespace MVC.Data
 
         public T GetData<T>(string key)
         {
-            throw new NotImplementedException();
-        }
-
-        public object RemoveData(string key)
-        {
-            throw new NotImplementedException();
+            var value = _db.StringGet(key);
+            if (!string.IsNullOrEmpty(value))
+            {
+                return JsonContent.DeserializeObject<T>(value);
+            }
+            return default;
         }
 
         public bool SetData<T>(string key, T value, DateTimeOffset expirationTime)
         {
-            throw new NotImplementedException();
+            TimeSpan expiryTime = expirationTime.DateTime.Subtract(DateTime.Now);
+            var isSet = _db.StringSet(key, JsonConverter.SerializeObject(value), expiryTime);
+            return isSet;
         }
+
+
+
+        public object RemoveData(string key)
+        {
+            bool _isKeyExist = _db.KeyExists(key);
+            if (_isKeyExist == true)
+            {
+                return _db.KeyDelete(key);
+            }
+            return false;
+        }
+
+
     }
 }
