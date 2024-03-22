@@ -16,14 +16,17 @@ namespace MVC.Controllers
     public class CompanyController : Controller
     {
         private readonly ILogger<Company> _logger;
+        private readonly ICacheService _cacheService;
         private readonly ICompanyRepository _companyRepository;
         private readonly IWebHostEnvironment _iwebHost;
 
         private readonly ICategoryRepository _categoryRepository;
         private readonly ApplicationDbContext _db;
 
-        public CompanyController(ILogger<Company> logger, ICompanyRepository companyRepository, ICategoryRepository categoryRepository, IWebHostEnvironment iwebHost, ApplicationDbContext db)
+        public CompanyController(ILogger<Company> logger, ICompanyRepository companyRepository, ICategoryRepository categoryRepository, IWebHostEnvironment iwebHost, ApplicationDbContext db, ICacheService cacheService)
         {
+
+            _cacheService = cacheService;
             _iwebHost = iwebHost;
             _db = db;
 
@@ -37,8 +40,24 @@ namespace MVC.Controllers
         public IActionResult Index()
         {
 
+            var cachedData = _cacheService.GetData<IEnumerable<Company>>("company");
+            List<Company> Companys;
+            if (cachedData != null)
+            {
+                Companys = (List<Company>)cachedData;
+            }
+            else
+            {
+                Companys = _companyRepository.GetALL("").ToList();
+                var expirationTime = DateTimeOffset.Now.AddMinutes(5.0);
+                _cacheService.SetData<IEnumerable<Company>>("company", Companys, expirationTime);
+
+
+
+            }
+
             // List<Category> categories = _db.Categories.ToList();
-            List<Company> Companys = _companyRepository.GetALL("").ToList();
+            // List<Company> Companys = _companyRepository.GetALL("").ToList();
             // IEnumerable<SelectListItem> categoryList = _categoryRepository.GetALL("").Select(u => new SelectListItem
             // {
             //     Text = u.Name,
