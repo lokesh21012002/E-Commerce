@@ -8,7 +8,7 @@ namespace MVC.Tests
 {
     public class FirstTest
     {
-        [SetUp]
+
 
 
 

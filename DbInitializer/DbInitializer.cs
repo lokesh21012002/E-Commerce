@@ -12,10 +12,9 @@ namespace MVC.DbInitializer
 {
     public class DbInitializer : IDbInitializer
     {
-        public void Initialize()
-        {
 
-            private readonly UserManager<IdentityUser> _userManager;
+
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ApplicationDbContext _db;
 
@@ -65,11 +64,11 @@ namespace MVC.DbInitializer
                     StreetAddress = "test 123 Ave",
                     State = "MP",
                     PostalCode = "23422",
-                    City = "Dewas"
+                    City = "Chicago"
                 }, "Admin123*").GetAwaiter().GetResult();
 
 
-                ApplicationUser user = _db.ApplicationUsers.FirstOrDefault(u => u.Email == "admin@gawande.com");
+                ApplicationUser user = _db.ApplicationUsers.FirstOrDefault(u => u.Email == "admin@dotnetmastery.com");
                 _userManager.AddToRoleAsync(user, SD.Role_Admin).GetAwaiter().GetResult();
 
             }
