@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using MVC.Data;
 using MVC.Models;
+using NUnit.Framework.Internal;
 
 namespace MVC.Controllers
 {
@@ -52,6 +56,48 @@ namespace MVC.Controllers
             Product product = db.LoadData<Product>(sql);
             return product;
 
+
+
+        }
+
+        public Product authHelper()
+        {
+
+            string sqlAuth = @"EXEC SP_GETAUTH @Email=@email @Password=@password";
+
+            List<SqlParameter> sqlParameters = new List<SqlParameter>();
+            SqlParameter email = new SqlParameter("@email", SqlDbType.VarChar);
+            email.Value = "admin@gmail.com";
+            sqlParameters.Add(email);
+            SqlParameter password = new SqlParameter("@password", SqlDbType.VarChar);
+            password.Value = "admin@gmail.com";
+            sqlParameters.Add(password);
+
+            return db.ExcecuteSqlWithParameters(sqlAuth, sqlParameters);
+
+
+        }
+
+        public Product tokenHelper()
+        {
+
+            string sqlAuth = @"EXEC SP_GETAUTH @Email=@email @Password=@password";
+
+            DynamicParameters sql = new DynamicParameters();
+            sql.Add("@Email", "test@gmail.com", DbType.String);
+            sql.Add("@Password", "test@gmail.com", DbType.String);
+            return db.ExcecuteSqlWithParameters(sqlAuth, sql);
+
+
+            // List<SqlParameter> sqlParameters = new List<SqlParameter>();
+            // SqlParameter email = new SqlParameter("@email", SqlDbType.VarChar);
+            // email.Value = "admin@gmail.com";
+            // sqlParameters.Add(email);
+            // SqlParameter password = new SqlParameter("@password", SqlDbType.VarChar);
+            // password.Value = "admin@gmail.com";
+            // sqlParameters.Add(password);
+
+            // return db.ExcecuteSqlWithParameters(sqlAuth, sqlParameters);
 
 
         }
