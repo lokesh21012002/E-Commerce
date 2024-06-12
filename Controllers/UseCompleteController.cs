@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore.Metadata;
 using MVC.Data;
 using MVC.Models;
+using Mysqlx.Crud;
 using NUnit.Framework.Internal;
 
 namespace MVC.Controllers
@@ -17,9 +19,18 @@ namespace MVC.Controllers
     {
         private readonly ApplicationDbContext db;
 
+        private readonly IMapper mapper;
+
         public UseCompleteController(ApplicationDbContext _db)
         {
             db = _db;
+            mapper = new SqlMapper(new MapperConfiguration(cfg)=>{
+                cfg.CreateMap<Order,OrderDetail>();
+
+
+
+
+            });
 
         }
 
@@ -98,6 +109,19 @@ namespace MVC.Controllers
             // sqlParameters.Add(password);
 
             // return db.ExcecuteSqlWithParameters(sqlAuth, sqlParameters);
+
+
+        }
+
+        public Order autoMapper(Order order)
+        {
+            // auomapper which maps the order to the OrderDetail
+            Order order = mapper.Map<Order>(OrderDetail);
+
+            return order;
+
+
+
 
 
         }
